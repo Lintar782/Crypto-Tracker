@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Price Tracker - Dashboard Real-Time</title>
+    <meta name="description" content="Lacak harga cryptocurrency teratas secara real-time. Data diperbarui setiap 30 detik.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body class="dark-mode"> <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>💰 Crypto Tracker</h1>
+            </div>
+            <div class="controls">
+                <div class="search-container">
+                    <input type="search" id="search-input" placeholder="Cari koin (mis. bitcoin)...">
+                </div>
+                <div class="filter-container">
+                    <select id="filter-select">
+                        <option value="50">Top 50</option>
+                        <option value="10">Top 10</option>
+                        <option value="100">Top 100</option>
+                    </select>
+                </div>
+
+                <button id="currency-toggle">Ubah Ke IDR</button>
+                <button id="theme-toggle" title="Toggle Dark/Light Mode">
+                    <span class="icon-moon">🌙</span>
+                    <span class="icon-sun">☀️</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div id="loading-spinner" class="spinner"></div>
+            
+            <div id="crypto-container">
+                </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>Data disediakan oleh <a href="https://www.coingecko.com/" target="_blank" rel="noopener noreferrer">CoinGecko</a></p>
+        </div>
+    </footer>
+
+    <button id="scroll-top-btn" title="Kembali ke atas">🔼</button>
+
+</body>
+</html>

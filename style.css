@@ -1,0 +1,377 @@
+/* ===== IMPORT FONT & CSS RESET ===== */
+:root {
+    --font-family: 'Poppins', sans-serif;
+    
+    /* Light Mode */
+    --bg-primary: #FFFFFF;
+    --bg-secondary: #F5F5F5;
+    --text-primary: #121212;
+    --text-secondary: #555555;
+    --border-color: #E0E0E0;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+
+    /* Accents */
+    --accent-green: #4CAF50;
+    --accent-red: #E53935;
+    --accent-blue: #007BFF;
+    --bg-hover: #EEEEEE;
+}
+
+body.dark-mode {
+    /* Dark Mode */
+    --bg-primary: #121212;
+    --bg-secondary: #1E1E1E;
+    --text-primary: #E0E0E0;
+    --text-secondary: #AAAAAA;
+    --border-color: #333333;
+    --shadow-color: rgba(0, 0, 0, 0.25);
+
+    /* Accents */
+    --accent-green: #00E676;
+    --accent-red: #FF5252;
+    --accent-blue: #29B6F6;
+    --bg-hover: #2C2C2C;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+/* ===== HEADER & KONTROL ===== */
+.header {
+    background-color: var(--bg-secondary);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 8px var(--shadow-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.logo h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+#search-input, #filter-select {
+    padding: 0.6rem 0.8rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-family);
+    font-size: 0.9rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#search-input:focus, #filter-select:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+}
+
+#search-input {
+    width: 250px;
+}
+
+/* ===== THEME TOGGLE BUTTON ===== */
+#theme-toggle {
+    background: none;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 0.6rem;
+    font-size: 1.2rem;
+    line-height: 0;
+    transition: background-color 0.3s ease;
+}
+
+#theme-toggle:hover {
+    background-color: var(--bg-hover);
+}
+
+#currency-toggle {
+    background-color: none;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 0.6rem 0.8rem;
+}
+
+#currency-toggle:hover {
+    background-color: var(--bg-hover);
+}
+
+.icon-sun, .icon-moon {
+    display: inline-block;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Sembunyikan ikon yang tidak aktif */
+.dark-mode .icon-sun { display: none; }
+body:not(.dark-mode) .icon-moon { display: none; }
+
+
+/* ===== MAIN CONTENT & LOADING SPINNER ===== */
+main {
+    padding: 2rem 0;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid var(--border-color);
+    border-top: 5px solid var(--accent-blue);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 4rem auto;
+    display: none; /* Sembunyi by default */
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ===== CRYPTO TABLE (DESKTOP) ===== */
+#crypto-container {
+    overflow-x: auto; /* Memastikan tabel bisa di-scroll horizontal jika terlalu lebar */
+}
+
+.crypto-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.95rem;
+}
+
+.crypto-table thead {
+    background-color: var(--bg-secondary);
+    border-bottom: 2px solid var(--border-color);
+}
+
+.crypto-table th {
+    padding: 1rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+}
+
+.crypto-table tbody tr {
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.2s ease;
+}
+
+.crypto-table tbody tr:nth-child(even) {
+    background-color: var(--bg-secondary);
+}
+
+.crypto-table tbody tr:hover {
+    background-color: var(--bg-hover);
+}
+
+.crypto-table td {
+    padding: 1rem;
+    vertical-align: middle;
+}
+
+.coin-name {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.coin-name img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
+
+.coin-name .name {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.coin-name .symbol {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+}
+
+/* Price change colors */
+.price-up {
+    color: var(--accent-green);
+    font-weight: 500;
+}
+
+.price-down {
+    color: var(--accent-red);
+    font-weight: 500;
+}
+
+/* Kolom yang rata kanan */
+.crypto-table .align-right {
+    text-align: right;
+    font-family: 'Courier New', Courier, monospace; /* Monospace untuk angka */
+    font-size: 1rem;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+    text-align: center;
+    padding: 1.5rem 0;
+    margin-top: 2rem;
+    background-color: var(--bg-secondary);
+    border-top: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.footer a {
+    color: var(--accent-blue);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+/* ===== SCROLL TO TOP BUTTON ===== */
+#scroll-top-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--accent-blue);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 4px 10px var(--shadow-color);
+    display: none; /* Sembunyi by default */
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#scroll-top-btn.show {
+    display: block;
+    opacity: 1;
+}
+
+#scroll-top-btn:hover {
+    transform: scale(1.1);
+}
+
+/* ===== RESPONSIVE DESIGN (MOBILE CARD VIEW) ===== */
+@media (max-width: 768px) {
+    .controls {
+        width: 100%;
+        justify-content: center;
+    }
+
+    #search-input {
+        width: 100%;
+    }
+
+    /* Ubah tabel menjadi tumpukan card */
+    #crypto-container {
+        overflow-x: hidden; /* Sembunyikan overflow horizontal */
+    }
+    
+    .crypto-table thead {
+        display: none; /* Sembunyikan header tabel */
+    }
+
+    .crypto-table tbody, .crypto-table tr, .crypto-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .crypto-table tr {
+        background-color: var(--bg-secondary);
+        border: 1px solid var(--border-color);
+        border-radius: 10px;
+        margin-bottom: 1rem;
+        box-shadow: 0 2px 5px var(--shadow-color);
+        padding: 0.5rem;
+    }
+    
+    /* Ganti tampilan cell menjadi baris key-value */
+    .crypto-table td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.75rem 1rem;
+        border-bottom: 1px dashed var(--border-color);
+        text-align: right;
+    }
+    
+    .crypto-table tr td:last-child {
+        border-bottom: none;
+    }
+
+    .crypto-table td[data-label="Koin"] {
+        /* Buat sel Koin sebagai header card */
+        background-color: var(--bg-hover);
+        margin: -0.5rem -0.5rem 0.5rem -0.5rem;
+        padding: 1rem;
+        border-radius: 10px 10px 0 0;
+        border-bottom: 1px solid var(--border-color);
+    }
+    
+    .crypto-table td .coin-name .name {
+        font-size: 1.1rem;
+    }
+
+    /* Tambahkan label dari atribut data-label */
+    .crypto-table td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: var(--text-secondary);
+        text-align: left;
+        padding-right: 1rem;
+    }
+
+    .crypto-table td[data-label="Koin"]::before {
+        display: none; /* Jangan tampilkan label untuk sel Koin */
+    }
+
+    .crypto-table .align-right {
+        text-align: right; /* Pastikan tetap rata kanan di mobile */
+    }
+}
